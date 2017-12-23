@@ -18,7 +18,9 @@
     "eslint-config-astur": "0.0.2"
   },
   "keywords": [
-    "easytype"
+    "type",
+    "typeof",
+    "is"
   ],
   "license": "MIT"
 }
