@@ -37,3 +37,23 @@ test('Base', t => {
     t.is(type(new Float64Array()), 'Float64Array');
     t.is(type(new Promise(() => {})), 'Promise');
 });
+
+test('Base', t => {
+    t.true(type.isUndefined());
+    t.true(type.isDefined('test'));
+    t.true(type.isNull(null));
+    t.true(type.isString(''));
+    t.true(type.isBoolean(true));
+    t.true(type.isNumber(1));
+    t.true(type.isArray([]));
+    t.true(type.isFunction(() => {}));
+    t.true(type.isRegExp(/^.*$/));
+    t.true(type.isDate(new Date()));
+    t.true(type.isSet(new Set()));
+    t.true(type.isMap(new Map()));
+    t.true(type.isWeakSet(new WeakSet()));
+    t.true(type.isWeakMap(new WeakMap()));
+    t.true(type.isSymbol(Symbol('test')));
+    t.true(type.isError(new Error()));
+    t.true(type.isPromise(new Promise(() => {})));
+});
