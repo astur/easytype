@@ -1,7 +1,39 @@
 const test = require('ava');
-const easytype = require('.');
+const type = require('.');
 
-test('easytype', t => {
-    t.true(true);
-    t.is(easytype, easytype);
+test('Base', t => {
+    t.is(type(), 'Undefined');
+    t.is(type(undefined), 'Undefined');
+    t.is(type(null), 'Null');
+    t.is(type(''), 'String');
+    t.is(type(true), 'Boolean');
+    t.is(type(false), 'Boolean');
+    t.is(type(0), 'Number');
+    t.is(type(-1.5), 'Number');
+    t.is(type(NaN), 'Number');
+    t.is(type(Infinity), 'Number');
+    t.is(type([]), 'Array');
+    t.is(type({}), 'Object');
+    t.is(type(Object.create(null)), 'Object');
+    t.is(type(() => {}), 'Function');
+    t.is(type(/^.*$/), 'RegExp');
+    t.is(type(new Date()), 'Date');
+    t.is(type(new Set()), 'Set');
+    t.is(type(new Map()), 'Map');
+    t.is(type(new WeakSet()), 'WeakSet');
+    t.is(type(new WeakMap()), 'WeakMap');
+    t.is(type(Symbol('test')), 'Symbol');
+    t.is(type(new Error()), 'Error');
+    t.is(type(Math), 'Math');
+    t.is(type(JSON), 'JSON');
+    t.is(type(new Int8Array()), 'Int8Array');
+    t.is(type(new Uint8Array()), 'Uint8Array');
+    t.is(type(new Uint8ClampedArray()), 'Uint8ClampedArray');
+    t.is(type(new Int16Array()), 'Int16Array');
+    t.is(type(new Uint16Array()), 'Uint16Array');
+    t.is(type(new Int32Array()), 'Int32Array');
+    t.is(type(new Uint32Array()), 'Uint32Array');
+    t.is(type(new Float32Array()), 'Float32Array');
+    t.is(type(new Float64Array()), 'Float64Array');
+    t.is(type(new Promise(() => {})), 'Promise');
 });
