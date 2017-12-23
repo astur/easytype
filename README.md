@@ -1,6 +1,6 @@
 # easytype
 
-easytype description here
+Just something better then `typeof`
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
