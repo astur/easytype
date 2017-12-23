@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "easytype",
   "version": "0.0.1",
   "description": "Just something better then typeof",
