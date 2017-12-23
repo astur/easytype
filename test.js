@@ -46,6 +46,7 @@ test('Base', t => {
     t.true(type.isBoolean(true));
     t.true(type.isNumber(1));
     t.true(type.isArray([]));
+    t.true(type.isObject({}));
     t.true(type.isFunction(() => {}));
     t.true(type.isRegExp(/^.*$/));
     t.true(type.isDate(new Date()));
