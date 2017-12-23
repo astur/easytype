@@ -38,7 +38,7 @@ test('Base', t => {
     t.is(type(new Promise(() => {})), 'Promise');
 });
 
-test('Base', t => {
+test('Shortcuts', t => {
     t.true(type.isUndefined());
     t.true(type.isDefined('test'));
     t.true(type.isNull(null));
@@ -57,4 +57,23 @@ test('Base', t => {
     t.true(type.isSymbol(Symbol('test')));
     t.true(type.isError(new Error()));
     t.true(type.isPromise(new Promise(() => {})));
+
+    t.false(type.isUndefined('test'));
+    t.false(type.isDefined());
+    t.false(type.isNull('null'));
+    t.false(type.isString(true));
+    t.false(type.isBoolean('true'));
+    t.false(type.isNumber('1'));
+    t.false(type.isArray({length: 1}));
+    t.false(type.isObject(null));
+    t.false(type.isFunction(global));
+    t.false(type.isRegExp('/^.*$/'));
+    t.false(type.isDate('Sat Dec 23 2017 18:44:45 GMT+0300 (MSK)'));
+    t.false(type.isSet(new WeakSet()));
+    t.false(type.isMap(new WeakMap()));
+    t.false(type.isWeakSet(new Set()));
+    t.false(type.isWeakMap(new Map()));
+    t.false(type.isSymbol([Symbol('test')]));
+    t.false(type.isError(Error));
+    t.false(type.isPromise(Promise.all));
 });
