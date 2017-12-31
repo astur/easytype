@@ -203,6 +203,8 @@ test('Advanced', t => {
     t.true(type.isArray.ofEasies([null, true, 1, '']));
     t.true(type.isArray.empty([]));
 
+    t.false(type.isArray.ofEasies([undefined, [], {}]));
+
     // serializable
     t.true(type.isSerializable(null));
     t.true(type.isSerializable(true));
@@ -210,4 +212,6 @@ test('Advanced', t => {
     t.true(type.isSerializable(''));
     t.true(type.isSerializable([]));
     t.true(type.isSerializable([null, true, 1, '']));
+
+    t.false(type.isSerializable([undefined, [], {}]));
 });

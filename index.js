@@ -30,8 +30,8 @@ type.isArray.ofBooleans = v => type.isArray(v) && v.every(e => type.isBoolean(e)
 type.isArray.ofFunctions = v => type.isArray(v) && v.every(e => type.isFunction(e));
 type.isArray.ofObjects = v => type.isArray(v) && v.every(e => type.isObject(e));
 type.isArray.ofArrays = v => type.isArray(v) && v.every(e => type.isArray(e));
-type.isArray.ofPrimitives = v => type.isArray(v) && v.every(e => type.isPrimitive);
-type.isArray.ofEasies = v => type.isArray(v) && v.every(e => type.isEasy);
+type.isArray.ofPrimitives = v => type.isArray(v) && v.every(e => type.isPrimitive(e));
+type.isArray.ofEasies = v => type.isArray(v) && v.every(e => type.isEasy(e));
 type.isArray.empty = v => type.isArray(v) && v.length === 0;
 
 type.isSerializable = v => type.isEasy(v) || type.isArray.ofEasies(v);
