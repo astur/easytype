@@ -127,3 +127,87 @@ test('Shortcuts', t => {
     t.false(type.isError(Error));
     t.false(type.isPromise(Promise.all));
 });
+
+test('Advanced', t => {
+    const o = Object.create(null);
+    function F(){}
+
+    // pure
+    t.true(type.isObject.pure(o));
+    t.false(type.isObject.pure({}));
+    t.false(type.isObject.pure(Object()));
+    t.false(type.isObject.pure(new Object()));
+    t.false(type.isObject.pure(new F()));
+
+    // plain
+    t.true(type.isObject.plain({}));
+    t.true(type.isObject.plain(o));
+    t.true(type.isObject.plain(Object()));
+    t.true(type.isObject.plain(new Object()));
+    t.false(type.isObject.plain(Object(1)));
+    t.false(type.isObject.plain(new Object('')));
+    t.false(type.isObject.plain(new F()));
+    t.false(type.isObject.plain(new Date()));
+    t.false(type.isObject.plain([]));
+    t.false(type.isObject.plain(1));
+    t.false(type.isObject.plain(null));
+    t.false(type.isObject.plain());
+
+    // primitives
+    t.true(type.isPrimitive(undefined));
+    t.true(type.isPrimitive(null));
+    t.true(type.isPrimitive(true));
+    t.true(type.isPrimitive(1));
+    t.true(type.isPrimitive('test'));
+    t.true(type.isPrimitive(Boolean()));
+    t.true(type.isPrimitive(Number()));
+    t.true(type.isPrimitive(String()));
+
+    t.false(type.isPrimitive({}));
+    t.false(type.isPrimitive([]));
+    t.false(type.isPrimitive(Object(undefined)));
+    t.false(type.isPrimitive(Object(null)));
+    t.false(type.isPrimitive(Object(true)));
+    t.false(type.isPrimitive(Object(1)));
+    t.false(type.isPrimitive(Object('test')));
+    t.false(type.isPrimitive(new Boolean()));
+    t.false(type.isPrimitive(new Number()));
+    t.false(type.isPrimitive(new String()));
+    t.false(type.isPrimitive(new Date()));
+    t.false(type.isPrimitive(new F()));
+
+    // easy
+    t.true(type.isEasy(null));
+    t.true(type.isEasy(true));
+    t.true(type.isEasy(false));
+    t.true(type.isEasy(1));
+    t.true(type.isEasy(''));
+    t.true(type.isEasy('test'));
+
+    t.false(type.isEasy({}));
+    t.false(type.isEasy(Object()));
+    t.false(type.isEasy([]));
+    t.false(type.isEasy(new F()));
+    t.false(type.isEasy(undefined));
+    t.false(type.isEasy());
+    t.false(type.isEasy(Symbol('test')));
+
+    //array of ...
+    t.true(type.isArray.ofNumbers([0, -1.5, NaN]));
+    t.true(type.isArray.ofStrings(['', 'test']));
+    t.true(type.isArray.ofBooleans([true, false]));
+    t.true(type.isArray.ofFunctions([function(){}, () => {}, F]));
+    t.true(type.isArray.ofObjects([{}, Object(), new Object(), o]));
+    t.true(type.isArray.ofArrays([[], [1, 2, 3], Array(10)]));
+    t.true(type.isArray.ofPrimitives([undefined, null, true, 1, '']));
+    t.true(type.isArray.ofEasies([null, true, 1, '']));
+    t.true(type.isArray.empty([]));
+
+    // serializable
+    t.true(type.isSerializable(null));
+    t.true(type.isSerializable(true));
+    t.true(type.isSerializable(1));
+    t.true(type.isSerializable(''));
+    t.true(type.isSerializable([]));
+    t.true(type.isSerializable([null, true, 1, '']));
+});
