@@ -19,4 +19,21 @@ type.isSymbol = v => type(v) === 'Symbol';
 type.isError = v => type(v) === 'Error';
 type.isPromise = v => type(v) === 'Promise';
 
+type.isObject.pure = v => type.isObject(v) && Reflect.getPrototypeOf(v) === null;
+type.isObject.plain = v => type.isObject(v) && [null, Reflect.getPrototypeOf({})].includes(Reflect.getPrototypeOf(v));
+type.isPrimitive = v => v !== Object(v);
+type.isEasy = v => ['Boolean', 'Null', 'Number', 'String'].includes(type(v));
+
+type.isArray.ofNumbers = v => type.isArray(v) && v.every(e => type.isNumber(e));
+type.isArray.ofStrings = v => type.isArray(v) && v.every(e => type.isString(e));
+type.isArray.ofBooleans = v => type.isArray(v) && v.every(e => type.isBoolean(e));
+type.isArray.ofFunctions = v => type.isArray(v) && v.every(e => type.isFunction(e));
+type.isArray.ofObjects = v => type.isArray(v) && v.every(e => type.isObject(e));
+type.isArray.ofArrays = v => type.isArray(v) && v.every(e => type.isArray(e));
+type.isArray.ofPrimitives = v => type.isArray(v) && v.every(e => type.isPrimitive);
+type.isArray.ofEasies = v => type.isArray(v) && v.every(e => type.isEasy);
+type.isArray.empty = v => type.isArray(v) && v.length === 0;
+
+type.isSerializable = v => type.isEasy(v) || type.isArray.ofEasies(v);
+
 module.exports = type;
