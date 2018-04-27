@@ -129,6 +129,22 @@ test('Shortcuts', t => {
 });
 
 test('Advanced', t => {
+    // numbers
+    t.false(type.isNumber.finite(NaN));
+    t.false(type.isNumber.finite(Infinity));
+    t.false(type.isNumber.finite(-Infinity));
+    t.true(type.isNumber.finite(0));
+    t.true(type.isNumber.finite(2e64));
+
+    // NaN
+    t.true(type.isNaN(NaN));
+    t.false(type.isNaN('NaN'));
+    t.false(type.isNaN(Infinity));
+    t.false(type.isNaN());
+    t.false(type.isNaN(0));
+    t.false(type.isNaN(null));
+    t.false(type.isNaN([NaN]));
+
     const o = Object.create(null);
     function F(){}
 
