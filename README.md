@@ -142,6 +142,20 @@ type.isPromise(Promise.all)
 
 // Advanced:
 
+type.isNumber.finite(0)            //true
+type.isNumber.finite(2e64)         //true
+type.isNumber.finite(NaN)          //false
+type.isNumber.finite(Infinity)     //false
+type.isNumber.finite(-Infinity)    //false
+
+type.isNaN(NaN)         //true
+type.isNaN('NaN')       //false
+type.isNaN(Infinity)    //false
+type.isNaN()            //false
+type.isNaN(0)           //false
+type.isNaN(null)        //false
+type.isNaN([NaN])       //false
+
 // let's play with it:
 const o = Object.create(null)
 function F(){}
@@ -189,12 +203,12 @@ type.isPrimitive(new String())       //false
 type.isPrimitive(new Date())         //false
 type.isPrimitive(new F())            //false
 
- type.isEasy(null)    //true
- type.isEasy(true)    //true
- type.isEasy(false)   //true
- type.isEasy(1)       //true
- type.isEasy('')      //true
- type.isEasy('test')  //true
+type.isEasy(null)    //true
+type.isEasy(true)    //true
+type.isEasy(false)   //true
+type.isEasy(1)       //true
+type.isEasy('')      //true
+type.isEasy('test')  //true
 
 type.isEasy({})              //false
 type.isEasy(Object())        //false
