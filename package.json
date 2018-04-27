@@ -1,6 +1,6 @@
 {
   "name": "easytype",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Just something better then typeof",
   "main": "index.js",
   "author": "astur <astur@yandex.ru> (http://kozlov.am/)",
