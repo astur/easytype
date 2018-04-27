@@ -19,6 +19,10 @@ type.isSymbol = v => type(v) === 'Symbol';
 type.isError = v => type(v) === 'Error';
 type.isPromise = v => type(v) === 'Promise';
 
+type.isNumber.finite = v => Number.isFinite(v);
+
+type.isNaN = v => v !== v;
+
 type.isObject.pure = v => type.isObject(v) && Reflect.getPrototypeOf(v) === null;
 type.isObject.plain = v => type.isObject(v) && [null, Reflect.getPrototypeOf({})].includes(Reflect.getPrototypeOf(v));
 type.isPrimitive = v => v !== Object(v);
