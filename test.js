@@ -135,6 +135,7 @@ test('Advanced', t => {
     t.false(type.isNumber.finite(-Infinity));
     t.true(type.isNumber.finite(0));
     t.true(type.isNumber.finite(2e64));
+    t.true(type.isNumber.finite(-1.5));
 
     // NaN
     t.true(type.isNaN(NaN));
@@ -150,6 +151,7 @@ test('Advanced', t => {
 
     // pure
     t.true(type.isObject.pure(o));
+
     t.false(type.isObject.pure({}));
     t.false(type.isObject.pure(Object()));
     t.false(type.isObject.pure(new Object()));
@@ -160,6 +162,7 @@ test('Advanced', t => {
     t.true(type.isObject.plain(o));
     t.true(type.isObject.plain(Object()));
     t.true(type.isObject.plain(new Object()));
+
     t.false(type.isObject.plain(Object(1)));
     t.false(type.isObject.plain(new Object('')));
     t.false(type.isObject.plain(new F()));
