@@ -144,6 +144,7 @@ type.isPromise(Promise.all)
 
 type.isNumber.finite(0)            //true
 type.isNumber.finite(2e64)         //true
+type.isNumber.finite(-1.5)         //true
 type.isNumber.finite(NaN)          //false
 type.isNumber.finite(Infinity)     //false
 type.isNumber.finite(-Infinity)    //false
@@ -160,6 +161,7 @@ type.isNaN([NaN])       //false
 const o = Object.create(null)
 function F(){}
 
+// pure object (null prototype)
 type.isObject.pure(o)             //true
 
 type.isObject.pure({})            //false
@@ -167,6 +169,7 @@ type.isObject.pure(Object())      //false
 type.isObject.pure(new Object())  //false
 type.isObject.pure(new F())       //false
 
+// plain object (native Object prototype)
 type.isObject.plain({})            //true
 type.isObject.plain(o)             //true
 type.isObject.plain(Object())      //true
@@ -181,6 +184,7 @@ type.isObject.plain(1)               //false
 type.isObject.plain(null)            //false
 type.isObject.plain()                //false
 
+// primitive (x !== Object(x))
 type.isPrimitive(undefined)          //true
 type.isPrimitive(null)               //true
 type.isPrimitive(true)               //true
@@ -203,6 +207,7 @@ type.isPrimitive(new String())       //false
 type.isPrimitive(new Date())         //false
 type.isPrimitive(new F())            //false
 
+// easy ('Boolean', 'Null', 'Number' or 'String')
 type.isEasy(null)    //true
 type.isEasy(true)    //true
 type.isEasy(false)   //true
@@ -228,6 +233,7 @@ type.isArray.ofPrimitives([undefined, null, true, 1, ''])  //true
 type.isArray.ofEasies([null, true, 1, ''])                 //true
 type.isArray.empty([])                                     //true
 
+// easy or array of easies
 type.isSerializable(null)                 //true
 type.isSerializable(true)                 //true
 type.isSerializable(1)                    //true
@@ -235,6 +241,7 @@ type.isSerializable('')                   //true
 type.isSerializable([])                   //true
 type.isSerializable([null, true, 1, ''])  //true
 
+type.isSerializable([undefined, [], {}])  //false
 ```
 
 ## License
