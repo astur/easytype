@@ -42,7 +42,7 @@ test('Base', t => {
     t.is(type([]), 'Array');
     t.is(type(Array()), 'Array');
     t.is(type(new Array()), 'Array');
-    t.is(type(Array.from('123')), 'Array');
+    t.is(type([...'123']), 'Array');
 
     t.is(type(() => {}), 'Function');
     t.is(type(function(){}), 'Function');
