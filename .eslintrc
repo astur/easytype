@@ -1,13 +1,14 @@
 {
     "extends": "astur",
     "rules": {
-        "no-void": 0,
-        "no-array-constructor": 0,
-        "no-new-wrappers": 0,
-        "no-new-object": 0,
-        "no-new-func": 0,
-        "prefer-arrow-callback": 0,
-        "symbol-description": 0,
-        "no-self-compare": 0
+        "no-void": "off",
+        "no-array-constructor": "off",
+        "no-new-wrappers": "off",
+        "no-new-object": "off",
+        "no-new-func": "off",
+        "no-empty-function": "off",
+        "prefer-arrow-callback": "off",
+        "symbol-description": "off",
+        "no-self-compare": "off"
     }
 }
